@@ -1,16 +1,30 @@
-FROM python:3.9.2
+FROM nunenuh/puml:python3.7-prod
 
 ENV PYTHONUNBUFFERED 1
 
 EXPOSE 8080
 WORKDIR /app
 
-COPY poetry.lock pyproject.toml ./
-RUN pip install --upgrade pip && \
-    pip install poetry && \
-    poetry config virtualenvs.create false && \
-    poetry install --no-dev
+RUN apt-get update && apt-get install git -y && \
+    apt-get install libgl1 libgl1-mesa-glx libglib2.0-0 libsm6 libxrender1 libxext6 -y 
+
+COPY ./require/fastapi.txt /tmp/fastapi.txt
+COPY ./require/ml.txt /tmp/ml.txt
+COPY ./require/reader.txt /tmp/reader.txt
+
+RUN pip install --upgrade pip
+RUN pip install -r /tmp/fastapi.txt 
+RUN pip install -r /tmp/ml.txt
+RUN pip install -r /tmp/reader.txt
+
+# RUN pip install loguru==0.4.0 joblib==0.15.1
 
 COPY . ./
 ENV PYTHONPATH app
-ENTRYPOINT ["python", "app/main.py"]
+
+# Use the ping endpoint as a healthcheck,
+# so Docker knows if the API is still running ok or needs to be restarted
+HEALTHCHECK --interval=21s --timeout=3s --start-period=10s CMD curl --fail http://localhost:8080/ping || exit 1
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+
