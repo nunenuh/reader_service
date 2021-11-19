@@ -31,7 +31,7 @@ logger.configure(handlers=[{"sink": sys.stderr, "level": LOGGING_LEVEL}])
 MODEL_PATH = config("MODEL_PATH", default="./ml/model/")
 DETECTION_MODEL_NAME = config("DETECTION_MODEL_NAME", default="craft_idcard.onnx")
 RECOGNITION_MODEL_NAME = config("RECOGNITION_MODEL_NAME", default="crnn_idcard.pth")
-SEGMENT_MODEL_NAME = config("SEGMENT_MODEL_NAME", default="unet_idcard.pth")
+SEGMENT_MODEL_NAME = config("SEGMENT_MODEL_NAME", default="unet_idcard.onnx")
 
 # from iqradre_reader.predictor.predictor import ReaderPredictor
 # from services import loader

@@ -16,7 +16,7 @@ router = APIRouter()
 
 
 @router.post("/predict", response_model=MachineLearningResponse, name="predict:text-reader")
-async def predict(file: UploadFile = File(...), use_segment=False):
+async def predict(file: UploadFile = File(...), use_segment: bool = False):
     if not file:
         raise HTTPException(status_code=404, detail=f"'data_input' argument invalid!")
     

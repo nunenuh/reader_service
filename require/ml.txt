@@ -9,3 +9,7 @@ opencv-python-headless==4.5.4.58
 scikit-image==0.18.3
 Shapely==1.8.0
 joblib==0.15.1
+
+pandas
+scikit-learn
+sklearn

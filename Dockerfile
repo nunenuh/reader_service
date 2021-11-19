@@ -15,7 +15,7 @@ COPY ./require/reader.txt /tmp/reader.txt
 RUN pip install --upgrade pip
 RUN pip install -r /tmp/fastapi.txt 
 RUN pip install -r /tmp/ml.txt
-RUN pip install -r /tmp/reader.txt
+RUN pip install -r /tmp/reader.txt --use-deprecated=legacy-resolver
 
 # RUN pip install loguru==0.4.0 joblib==0.15.1
 
