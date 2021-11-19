@@ -80,13 +80,8 @@ tensorboard-plugin-wit==1.8.0
 termcolor==1.1.0
 tifffile==2021.10.12
 torch==1.9.0
-<<<<<<< HEAD
 torchvision==0.10.0
 torchmetrics==0.6.0
-=======
-torchmetrics==0.6.0
-torchvision==0.10.0
->>>>>>> 635d1bf4bd999c2d79be738288d396060e6440bd
 tqdm==4.62.3
 typing-extensions==3.10.0.2
 urllib3==1.25.11
