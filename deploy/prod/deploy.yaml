@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reader-deployment
+  namespace: ocr
+  labels:
+    environment: production
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: reader-deployment
+  template:
+    metadata:
+      labels:
+        app: reader-deployment
+    spec:
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: ocr-pvc
+      containers:
+      - name: reader-deployment
+        image: 720313667338.dkr.ecr.ap-southeast-1.amazonaws.com/reader_service:latest
+        imagePullPolicy: Always
+        env:
+        - name: SECRET_KEY
+          value: "d1e8751cece9b306ee4f66aedd030259fe8edc1a53088a88854f1891f711fbfe"
+        - name: DEBUG
+          value: "True"
+        - name: MODEL_PATH
+          value: "/storage/model/idcard/reader/"
+        - name: DETECTION_MODEL_NAME
+          value: "craft_idcard.onnx"
+        - name: RECOGNITION_MODEL_NAME
+          value: "crnn_idcard.pth"
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+        - name: storage # must match the volume name, above
+          mountPath: "/storage"
+          # subPath: model/idcard/reader
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reader-service
+  namespace: ocr
+  labels:
+    environment: production
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: reader-deployment
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: reader-ingress
+  namespace: ocr
+  labels:
+    environment: production
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.il/add-base-url: "true"
+spec:
+  rules:
+  - host: reader-service.ocr
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: reader-service
+              port:
+                number: 5000

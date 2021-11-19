@@ -1,11 +1,14 @@
 import logging
 import sys
+import os
 from typing import List
 
 from core.logging import InterceptHandler
 from loguru import logger
 from starlette.config import Config
 from starlette.datastructures import CommaSeparatedStrings, Secret
+
+
 
 config = Config(".env")
 
@@ -26,4 +29,12 @@ logging.basicConfig(
 logger.configure(handlers=[{"sink": sys.stderr, "level": LOGGING_LEVEL}])
 
 MODEL_PATH = config("MODEL_PATH", default="./ml/model/")
-MODEL_NAME = config("MODEL_NAME", default="model.pkl")
+DETECTION_MODEL_NAME = config("DETECTION_MODEL_NAME", default="craft_idcard.onnx")
+RECOGNITION_MODEL_NAME = config("RECOGNITION_MODEL_NAME", default="crnn_idcard.pth")
+SEGMENT_MODEL_NAME = config("SEGMENT_MODEL_NAME", default="unet_idcard.pth")
+
+
+
+# from iqradre_reader.predictor.predictor import ReaderPredictor
+# from services import loader
+# reader_model = loader.load_reader_model()
