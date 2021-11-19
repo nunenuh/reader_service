@@ -6,7 +6,6 @@ from fastapi import APIRouter, HTTPException
 from loguru import logger
 from models.prediction import HealthResponse, MachineLearningResponse
 from services import functional as predictor
-
 from fastapi import FastAPI, File, UploadFile, Request
 from libml import utils
 

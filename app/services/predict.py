@@ -6,8 +6,8 @@ from loguru import logger
 
 from iqradre_reader.predictor.predictor import ReaderPredictor
 from iqradre_segment.prod import SegmentationPredictorOnnx
-import joblib
 
+import joblib
 
 
 class ReaderModelHandler(object):

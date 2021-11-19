@@ -33,8 +33,6 @@ DETECTION_MODEL_NAME = config("DETECTION_MODEL_NAME", default="craft_idcard.onnx
 RECOGNITION_MODEL_NAME = config("RECOGNITION_MODEL_NAME", default="crnn_idcard.pth")
 SEGMENT_MODEL_NAME = config("SEGMENT_MODEL_NAME", default="unet_idcard.pth")
 
-
-
 # from iqradre_reader.predictor.predictor import ReaderPredictor
 # from services import loader
 # reader_model = loader.load_reader_model()
