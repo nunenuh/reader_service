@@ -7,7 +7,7 @@ from PIL import Image
 import uuid
 import os
 from pathlib import Path
-
+from core import config
 
 def predict(image, use_segment=False, auto_deskew=False, auto_resize=False):
     if use_segment:
@@ -26,7 +26,8 @@ def predict(image, use_segment=False, auto_deskew=False, auto_resize=False):
 
 def save_images(request, images, relative_url=False):
     base_uuid = f'{uuid.uuid1().hex[:10]}'
-    base_dir = f'upload_files/{base_uuid}'
+    base_dir = f'{config.STATIC_DIR}/{base_uuid}'
+    relative_base_url = f'{config.STATIC_URL}/{base_uuid}'
     Path(base_dir).mkdir(parents=True, exist_ok=True)
     
     urls_link = {}
@@ -34,6 +35,8 @@ def save_images(request, images, relative_url=False):
         img = images[key]
         
         fname = f'{base_dir}/{base_uuid}_{key}.png'
+        relative_fname = f'{relative_base_url}/{base_uuid}_{key}.png'
+        
         # print(f'{type(img)} Type Filename : {fname}')
         # print(f'image dtype : {img.dtype}')
         
@@ -47,9 +50,9 @@ def save_images(request, images, relative_url=False):
             img.convert("RGB")
             img.save(fname)
         
-        link = f'{request.base_url}{fname}'
+        link = f'{request.base_url}{relative_fname}'
         if relative_url:
-            link = f'{fname}'
+            link = relative_fname
         urls_link[key] = link
         
     return base_uuid, urls_link
