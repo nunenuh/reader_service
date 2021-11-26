@@ -17,6 +17,9 @@ RUN pip install -r /tmp/fastapi.txt
 RUN pip install -r /tmp/ml.txt
 RUN pip install -r /tmp/reader.txt --use-deprecated=legacy-resolver
 
+RUN pip install git+https://github.com/nunenuh/iqradre_reader.git#egg=iqradre_reader --no-cache-dir
+RUN pip install git+https://github.com/nunenuh/iqradre_segment.git#egg=iqradre_segment --no-cache-dir
+
 # RUN pip install loguru==0.4.0 joblib==0.15.1
 
 COPY . ./

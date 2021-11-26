@@ -36,6 +36,8 @@
             value: "crnn_idcard.pth"
           - name: SEGMENT_MODEL_NAME
             value: "unet_idcard.onnx"
+          - name: STATIC_DIR
+            value: "/storage/ocr-data/upload_files"
           ports:
           - name: http
             containerPort: 8080
@@ -43,7 +45,7 @@
           volumeMounts:
           - name: storage # must match the volume name, above
             mountPath: "/storage"
-            # subPath: model/idcard/reader
+            subPath: model/idcard/reader
   ---
   apiVersion: v1
   kind: Service

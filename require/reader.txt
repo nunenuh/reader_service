@@ -94,7 +94,6 @@ yarl==1.7.0
 #zipp==3.6.0
 
 pandas
+sklearn
 
-git+https://github.com/nunenuh/iqradre_reader.git#egg=iqradre_reader
 
-git+https://github.com/nunenuh/iqradre_segment.git#egg=iqradre_segment

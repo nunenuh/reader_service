@@ -9,15 +9,14 @@ from iqradre_segment.prod import SegmentationPredictorOnnx
 
 import joblib
 
-
 class ReaderModelHandler(object):
     model = None
 
     @classmethod
-    def predict(cls, input, load_wrapper=joblib.load, method="predict"):
+    def predict(cls, input, auto_deskew=False, load_wrapper=joblib.load, method="predict"):
         clf = cls.get_model(load_wrapper)
         if hasattr(clf, method):
-            return getattr(clf, method)(input)
+            return getattr(clf, method)(input, auto_deskew=auto_deskew)
         raise PredictException(f"'{method}' attribute is missing")
 
     @classmethod
@@ -62,10 +61,10 @@ class SegmentModelHandler(object):
     model = None
 
     @classmethod
-    def predict(cls, input, load_wrapper=joblib.load, method="predict"):
+    def predict(cls, input, auto_resize=True, load_wrapper=joblib.load, method="predict"):
         clf = cls.get_model(load_wrapper)
         if hasattr(clf, method):
-            return getattr(clf, method)(input)
+            return getattr(clf, method)(input, auto_resize=auto_resize)
         raise PredictException(f"'{method}' attribute is missing")
 
     @classmethod
