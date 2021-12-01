@@ -25,10 +25,11 @@ RUN pip install git+https://github.com/nunenuh/iqradre_segment.git#egg=iqradre_s
 COPY . ./
 ENV PYTHONPATH app
 
-RUN chmod +x prestart.sh
-RUN ./prestart.sh
+# RUN chmod +x prestart.sh
+# RUN ./prestart.sh
 # Use the ping endpoint as a healthcheck,
 # so Docker knows if the API is still running ok or needs to be restarted
 HEALTHCHECK --interval=21s --timeout=3s --start-period=10s CMD curl --fail http://localhost:8080/ping || exit 1
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["python", "main.py"]

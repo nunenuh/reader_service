@@ -7,6 +7,9 @@ from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException
 from fastapi.staticfiles import StaticFiles
+import os
+from tests import reader_test
+
 
 def get_application() -> FastAPI:
     application = FastAPI(title=PROJECT_NAME, debug=DEBUG, version=VERSION)
@@ -22,4 +25,5 @@ app = get_application()
 app.mount(config.STATIC_URL, StaticFiles(directory=config.STATIC_DIR), name=config.STATIC_DIR)
 
 if __name__ == "__main__":
+    reader_test.run_test()
     uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=False, debug=False)
