@@ -3,13 +3,25 @@ from iqradre_reader.detector.predictor import BoxesPredictor, BoxesPredictorOnnx
 from iqradre_reader.predictor import ReaderPredictor
 from pathlib import Path
 from time import time
+from pathlib import Path
+
+from starlette.config import Config
+config = Config(".env")
+
+MODEL_PATH = config("MODEL_PATH", default="./ml/model/")
+DETECTION_MODEL_NAME = config("DETECTION_MODEL_NAME", default="craft_idcard.onnx")
+RECOGNITION_MODEL_NAME = config("RECOGNITION_MODEL_NAME", default="crnn_idcard.pth")
+
+DETECTION_PATH = Path(MODEL_PATH).joinpath(DETECTION_MODEL_NAME)
+RECOGNITION_PATH = Path(MODEL_PATH).joinpath(RECOGNITION_MODEL_NAME)
+
 
 if __name__ == '__main__':
 
     image_path = 'assets/images/segment.jpg'
     config = {
-        'detector': 'ml/model/craft_idcard.onnx',
-        'recognitor': 'ml/model/crnn_idcard.pth',
+        'detector': str(DETECTION_PATH),
+        'recognitor': str(RECOGNITION_PATH),
     }
     
     reader = ReaderPredictor(config=config)

@@ -27,7 +27,6 @@ ENV PYTHONPATH app
 
 RUN chmod +x prestart.sh
 RUN ./prestart.sh
-
 # Use the ping endpoint as a healthcheck,
 # so Docker knows if the API is still running ok or needs to be restarted
 HEALTHCHECK --interval=21s --timeout=3s --start-period=10s CMD curl --fail http://localhost:8080/ping || exit 1
