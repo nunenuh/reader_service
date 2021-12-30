@@ -39,7 +39,7 @@ STATIC_DIR: str = config("STATIC_DIR")
 
 TEXT_THRESHOLD: float = config("TEXT_THRESHOLD") 
 LINK_THRESHOLD: float = config("LINK_THRESHOLD") 
-LOW_TEXT: float = config("LOW_TEXT") 
+LOW_TEXT: float = config("LOW_TEXT")
 MIN_SIZE_PERCENT: int = config("MIN_SIZE_PERCENT") 
 
 # from iqradre_reader.predictor.predictor import ReaderPredictor

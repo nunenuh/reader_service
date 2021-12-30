@@ -16,6 +16,7 @@ def predict(image, use_segment=False, auto_deskew=False, auto_resize=False):
         image_segment = result['prediction']
         image = np.array(image_segment)
         segtime = time() - stime
+        print(image)
     reader_predict = reader_model.predict(image, auto_deskew=auto_deskew)
     
     if use_segment:

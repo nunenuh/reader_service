@@ -41,9 +41,9 @@
           - name: STATIC_URL
             value: "/upload_files/reader"
           - name: LOW_TEXT
-            value: "0.2"
-          - name: "MIN_SIZE_PERCENT"
-            value: "2"
+            value: "0.5"
+          - name: MIN_SIZE_PERCENT
+            value: "3"
           ports:
           - name: http
             containerPort: 8080
