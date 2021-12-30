@@ -36,6 +36,12 @@ SEGMENT_MODEL_NAME = config("SEGMENT_MODEL_NAME", default="unet_idcard.onnx")
 STATIC_URL: str = config("STATIC_URL")
 STATIC_DIR: str = config("STATIC_DIR")
 
+
+TEXT_THRESHOLD: float = config("TEXT_THRESHOLD") 
+LINK_THRESHOLD: float = config("LINK_THRESHOLD") 
+LOW_TEXT: float = config("LOW_TEXT") 
+MIN_SIZE_PERCENT: int = config("MIN_SIZE_PERCENT") 
+
 # from iqradre_reader.predictor.predictor import ReaderPredictor
 # from services import loader
 # reader_model = loader.load_reader_model()
