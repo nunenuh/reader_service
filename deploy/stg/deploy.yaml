@@ -40,6 +40,10 @@
             value: "/storage/ocr-data/upload_files/reader"
           - name: STATIC_URL
             value: "/upload_files/reader"
+          - name: LOW_TEXT
+            value: "0.2"
+          - name: "MIN_SIZE_PERCENT"
+            value: "2"
           ports:
           - name: http
             containerPort: 8080

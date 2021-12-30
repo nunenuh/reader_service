@@ -18,6 +18,12 @@ class ReaderModelHandler(object):
     def predict(cls, input, auto_deskew=False, load_wrapper=joblib.load, method="predict"):
         clf = cls.get_model(load_wrapper)
         if hasattr(clf, method):
+            print(f"ReaderHandler: predict params:")
+            print(f"params: TEXT_THRESHOLD: {TEXT_THRESHOLD}")
+            print(f"params: LINK_THRESHOLD: {LINK_THRESHOLD}")
+            print(f"params: LOW_TEXT: {LOW_TEXT}")
+            print(f"params: MIN_SIZE_PERCENT: {MIN_SIZE_PERCENT}")
+            
             return getattr(clf, method)(
                 input,
                 text_threshold=TEXT_THRESHOLD,
