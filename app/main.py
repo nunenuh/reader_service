@@ -25,5 +25,5 @@ app = get_application()
 app.mount(config.STATIC_URL, StaticFiles(directory=config.STATIC_DIR), name=config.STATIC_DIR)
 
 if __name__ == "__main__":
-    reader_test.run_test()
+    # reader_test.run_test()
     uvicorn.run("main:app", host="0.0.0.0", port=8080, reload=False, debug=False)
