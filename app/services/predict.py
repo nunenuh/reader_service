@@ -29,7 +29,6 @@ class ReaderModelHandler(object):
                 auto_deskew=auto_deskew,
                 text_threshold=TEXT_THRESHOLD,
                 link_threshold=LINK_THRESHOLD,
-                low_text=LOW_TEXT,
                 min_size_percent=MIN_SIZE_PERCENT,
             )
         raise PredictException(f"'{method}' attribute is missing")
