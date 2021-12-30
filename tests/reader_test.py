@@ -17,18 +17,18 @@ RECOGNITION_PATH = Path(MODEL_PATH).joinpath(RECOGNITION_MODEL_NAME)
 
 
 if __name__ == '__main__':
-
-    image_path = 'assets/images/segment.jpg'
-    config = {
-        'detector': str(DETECTION_PATH),
-        'recognitor': str(RECOGNITION_PATH),
-    }
+    pass
+    # image_path = 'assets/images/segment.jpg'
+    # config = {
+    #     'detector': str(DETECTION_PATH),
+    #     'recognitor': str(RECOGNITION_PATH),
+    # }
     
-    reader = ReaderPredictor(config=config)
+    # reader = ReaderPredictor(config=config)
     
-    start = time()
-    result = reader.predict(image_path, auto_deskew=True)
-    elapsed = time() - start
-    print(result['prediction'])
-    print(f'elapsed predict time: {elapsed:.4f} second' )
+    # start = time()
+    # result = reader.predict(image_path, auto_deskew=True)
+    # elapsed = time() - start
+    # print(result['prediction'])
+    # print(f'elapsed predict time: {elapsed:.4f} second' )
     
